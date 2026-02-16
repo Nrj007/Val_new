@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Floating hearts container -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_4a8ff7e39c.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-toggle">
+        🔇
+    </button>
+
+    <div class="instruction" id="instruction">Click the envelope to open</div>
+
+    <!-- Envelope -->
+    <div class="envelope-container" id="envelopeContainer">
+        <div class="envelope">
+            <div class="envelope-flap" id="envelopeFlap"></div>
+            <div class="envelope-body"></div>
+        </div>
+    </div>
+
+    <!-- Letter Card -->
+    <div class="letter-card" id="letterCard">
+        <div class="letter-scroll">
+            <h1 class="letter-title">My Love,</h1>
+
+            <p class="letter-text">I still smile when I think about how unexpected all of this was.</p>
+
+            <p class="letter-text">The way we met, the way we slowly found our way into each other's lives, none of it
+                was planned, yet somehow it feels like it was always meant to happen.</p>
+
+            <p class="letter-text">Falling in love with you happened quietly and suddenly at the same time. One day you
+                were just someone special, and the next, you were my safe place. You've changed me in ways I never
+                imagined. I'm happier now than I ever was before — happier, calmer, and more hopeful, simply because
+                you're in my life.</p>
+
+            <p class="letter-text">I know I'm not perfect. There are times I've hurt you, even without meaning to, and
+                for that I'm truly sorry. Please know that it never came from a lack of love. If anything, it comes from
+                still learning how to love you better, the way you deserve.</p>
+
+            <p class="letter-text">What I do know for sure is this: I want us. I want to face every hardship, every
+                challenge, every storm together. I believe in us, in our bond, and in the love we share. No matter how
+                hard things get, I hope we always choose each other.</p>
+
+            <p class="letter-text">Thank you for loving me, for standing by me, and for being you.</p>
+
+            <p class="letter-text">I hope we keep walking hand in hand, growing, healing, and loving until the very end.
+            </p>
+
+            <p class="letter-signature">Happy Valentine's Day, my love.</p>
+
+            <div class="heart-signature">❤</div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

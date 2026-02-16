@@ -1,0 +1,250 @@
+:root {
+  --bg-color: #fdfbf7;
+  --envelope-color: #ffc5c5;
+  --envelope-dark: #ffb0b0;
+  --heart-color: #c2185b;
+  --text-color: #2d2d2d;
+  --accent-color: #d81b60;
+  --paper-color: #fffcf5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url("2245eb_32e2a1f31aea41ec9c70ad78b7eb480d~mv2.jpg")
+    center/cover no-repeat fixed;
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  color: var(--text-color);
+}
+
+.instruction {
+  position: absolute;
+  top: 15%;
+  font-family: "Playfair Display", serif;
+  color: var(--text-color);
+  font-size: 1.3rem;
+  opacity: 0.7;
+  letter-spacing: 2px;
+  animation: pulse 2s infinite ease-in-out;
+  z-index: 10;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-5px);
+  }
+}
+
+/* Music Toggle Button */
+.music-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--envelope-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.music-toggle:hover {
+  transform: scale(1.1);
+  background: var(--envelope-color);
+}
+
+.music-toggle.playing {
+  animation: musicPulse 1s infinite;
+}
+
+/* Envelope Styles */
+.envelope-container {
+  position: relative;
+  width: 400px;
+  height: 280px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 5;
+}
+
+.envelope-container:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.envelope-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--envelope-color);
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.envelope-flap {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 200px solid transparent;
+  border-right: 200px solid transparent;
+  border-top: 140px solid var(--envelope-dark);
+  top: 0;
+  left: 0;
+  transform-origin: top center;
+  z-index: 10;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* Letter Card */
+.letter-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 700px);
+  height: min(85vh, 800px);
+  background: var(--paper-color);
+  border-radius: 20px;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
+  padding: 4rem 3.5rem;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.letter-scroll {
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 15px;
+  opacity: 0;
+
+  /* Hide Scrollbar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.letter-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.letter-title {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent-color);
+  text-align: center;
+}
+
+.letter-text {
+  font-family: "Playfair Display", serif;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  color: #3a3a3a;
+  text-align: justify;
+}
+
+/* Ensure word spans inherit styling */
+.letter-card span {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  display: inline-block;
+}
+
+.letter-signature {
+  font-family: "Dancing Script", cursive;
+  font-size: 2rem;
+  margin-top: 3rem;
+  text-align: right;
+  color: var(--accent-color);
+}
+
+.heart-signature {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--heart-color);
+  margin-top: 1.5rem;
+  animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Floating Hearts */
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  bottom: -20px;
+  color: var(--heart-color);
+  opacity: 0;
+  font-size: 1.5rem;
+  animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-110vh) scale(1.2) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes musicPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
