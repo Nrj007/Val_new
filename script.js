@@ -10,6 +10,30 @@ document.addEventListener("DOMContentLoaded", () => {
   let isOpen = false;
   let isMusicPlaying = false;
 
+  // Function to attempt playing music
+  function attemptPlay() {
+    bgMusic.volume = 0.5;
+    bgMusic
+      .play()
+      .then(() => {
+        isMusicPlaying = true;
+        musicToggle.textContent = "🔊";
+        musicToggle.classList.add("playing");
+        // Remove global listener if it exists once playing starts
+        document.removeEventListener("click", attemptPlay);
+      })
+      .catch((error) => {
+        console.log("Autoplay prevented:", error);
+        // If autoplay blocked, ensure next interaction plays it
+      });
+  }
+
+  // Attempt to play immediately
+  attemptPlay();
+
+  // Also play on first document click/interaction to bypass blocking policies
+  document.addEventListener("click", attemptPlay, { once: true });
+
   // Background Hearts Animation
   function createHeart() {
     const heart = document.createElement("div");
@@ -30,20 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(createHeart, 400);
 
   // Music Toggle Functionality
-  musicToggle.addEventListener("click", () => {
+  musicToggle.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent bubbling to document click
     if (isMusicPlaying) {
       bgMusic.pause();
       musicToggle.textContent = "🔇";
       musicToggle.classList.remove("playing");
       isMusicPlaying = false;
     } else {
-      bgMusic.play().catch((err) => {
-        console.log("Audio play failed:", err);
-        alert("Please allow audio to play for the full experience!");
-      });
-      musicToggle.textContent = "🔊";
-      musicToggle.classList.add("playing");
-      isMusicPlaying = true;
+      bgMusic
+        .play()
+        .then(() => {
+          isMusicPlaying = true;
+          musicToggle.textContent = "🔊";
+          musicToggle.classList.add("playing");
+        })
+        .catch((err) => {
+          console.log("Audio play failed:", err);
+        });
     }
   });
 
@@ -61,20 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (isOpen) return;
     isOpen = true;
 
-    // Try to play background music
-    bgMusic.volume = 0.3; // Set volume to 30%
-    if (!isMusicPlaying) {
-      bgMusic
-        .play()
-        .then(() => {
-          musicToggle.textContent = "🔊";
-          musicToggle.classList.add("playing");
-          isMusicPlaying = true;
-        })
-        .catch((err) => {
-          console.log("Auto-play blocked. User can click music button.");
-        });
-    }
+    // Ensure music tries to play if it hasn't started yet
+    if (!isMusicPlaying) attemptPlay();
 
     // Stop hovering
     gsap.killTweensOf(envelopeContainer);

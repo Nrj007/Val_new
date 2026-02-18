@@ -16,7 +16,7 @@
 
 body {
   background: url("2245eb_32e2a1f31aea41ec9c70ad78b7eb480d~mv2.jpg")
-    center/cover no-repeat fixed;
+    center/cover repeat fixed;
   font-family: "Inter", sans-serif;
   height: 100vh;
   display: flex;
@@ -128,10 +128,35 @@ body {
   transform: translate(-50%, -50%);
   width: min(90vw, 700px);
   height: min(85vh, 800px);
-  background: var(--paper-color);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.03) 0px,
+      transparent 1px,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 3px
+    ),
+    linear-gradient(
+      135deg,
+      #fdfbf7 0%,
+      #fef9f0 25%,
+      #fffcf5 50%,
+      #fef9f0 75%,
+      #fdfbf7 100%
+    );
   border-radius: 20px;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.3);
-  padding: 4rem 3.5rem;
+  padding-left: 25px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  padding-right: 25px;
   z-index: 100;
   opacity: 0;
   visibility: hidden;
