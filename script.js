@@ -10,29 +10,29 @@ document.addEventListener("DOMContentLoaded", () => {
   let isOpen = false;
   let isMusicPlaying = false;
 
-  // Function to attempt playing music
-  function attemptPlay() {
-    bgMusic.volume = 0.5;
-    bgMusic
-      .play()
-      .then(() => {
-        isMusicPlaying = true;
-        musicToggle.textContent = "🔊";
-        musicToggle.classList.add("playing");
-        // Remove global listener if it exists once playing starts
-        document.removeEventListener("click", attemptPlay);
-      })
-      .catch((error) => {
-        console.log("Autoplay prevented:", error);
-        // If autoplay blocked, ensure next interaction plays it
-      });
-  }
+  // // Function to attempt playing music
+  // function attemptPlay() {
+  //   bgMusic.volume = 0.5;
+  //   bgMusic
+  //     .play()
+  //     .then(() => {
+  //       isMusicPlaying = true;
+  //       musicToggle.textContent = "🔊";
+  //       musicToggle.classList.add("playing");
+  //       // Remove global listener if it exists once playing starts
+  //       document.removeEventListener("click", attemptPlay);
+  //     })
+  //     .catch((error) => {
+  //       console.log("Autoplay prevented:", error);
+  //       // If autoplay blocked, ensure next interaction plays it
+  //     });
+  // }
 
-  // Attempt to play immediately
-  attemptPlay();
+  // // Attempt to play immediately
+  // attemptPlay();
 
-  // Also play on first document click/interaction to bypass blocking policies
-  document.addEventListener("click", attemptPlay, { once: true });
+  // // Also play on first document click/interaction to bypass blocking policies
+  // document.addEventListener("click", attemptPlay, { once: true });
 
   // Background Hearts Animation
   function createHeart() {
